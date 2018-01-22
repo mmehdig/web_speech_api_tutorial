@@ -1,0 +1,64 @@
+<html>
+
+<body>
+
+  <h3> Speech Synthesis </h3>
+
+  <button id="listen">Listen</button>
+  <p class="output-text">
+    Text here
+  </p>
+
+  <h3> Speech Recognition </h3>
+  <button id="say">Say</button>:
+  "<input id="input-text" type="" />"
+  in
+  <select name="voices" id="voice-list">
+  </select>
+<script>
+
+// Recognition
+var diagnostic = document.querySelector('.output-text');
+
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+
+var recognition = new SpeechRecognition();
+
+recognition.onresult = function(event) {
+  var last = event.results.length - 1;
+  diagnostic.textContent = "\"" +
+    event.results[last][0].transcript +
+    "\" " +
+    event.results[last][0].confidence
+    ;
+
+  console.log(event);
+}
+document.querySelector('#listen').onclick =  function(event) {
+  recognition.start();
+  return false;
+}
+
+// Synthesis
+var voice;
+window.speechSynthesis.onvoiceschanged = function() {
+  var voices = window.speechSynthesis.getVoices();
+  voices.forEach(function(el){
+    let option = document.createElement("option");
+    option.text = el.lang + " (" + el.name + ")";
+    document.querySelector('#voice-list').add(option);
+  });
+}
+
+document.querySelector('#say').onclick =  function(event) {
+  var utt = new SpeechSynthesisUtterance(document.querySelector('#input-text').value);
+
+  window.speechSynthesis.speak(utt);
+  return false;
+}
+
+</script>
+</body>
+<html>
