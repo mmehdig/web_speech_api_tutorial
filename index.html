@@ -54,7 +54,7 @@ window.speechSynthesis.onvoiceschanged = function() {
 
 document.querySelector('#say').onclick =  function(event) {
   var utt = new SpeechSynthesisUtterance(document.querySelector('#input-text').value);
-
+  utt
   window.speechSynthesis.speak(utt);
   return false;
 }
