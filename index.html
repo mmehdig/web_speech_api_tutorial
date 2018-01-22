@@ -42,19 +42,22 @@ document.querySelector('#listen').onclick =  function(event) {
 }
 
 // Synthesis
-var voice;
+var voices;
 window.speechSynthesis.onvoiceschanged = function() {
-  var voices = window.speechSynthesis.getVoices();
-  voices.forEach(function(el){
+  voices = window.speechSynthesis.getVoices();
+  voices.forEach(function(el, i){
     let option = document.createElement("option");
     option.text = el.lang + " (" + el.name + ")";
+    option.value = i;
     document.querySelector('#voice-list').add(option);
   });
 }
 
 document.querySelector('#say').onclick =  function(event) {
-  var utt = new SpeechSynthesisUtterance(document.querySelector('#input-text').value);
-  utt
+  let utt = new SpeechSynthesisUtterance(document.querySelector('#input-text').value);
+  let voiceId = 1*(document.querySelector("#voice-list").value);
+  utt.lang = voices[voiceId].lang;
+  utt.voice = voices[voiceId];
   window.speechSynthesis.speak(utt);
   return false;
 }
