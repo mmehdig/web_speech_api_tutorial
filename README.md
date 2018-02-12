@@ -30,6 +30,7 @@ We can now change `index.html` and use other features in [Web Speech API specifi
 
 Some javascript knowledge is required to start using Web Speech API. For a quick Javascript introduction, these two books are great:
 
+- "[A re-introduction to JavaScript (JS tutorial)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)". Retrieved from https://developer.mozilla.org/
 - Morgan, Nick. JavaScript for Kids: A Playful Introduction to Programming. No Starch Press, 2014.
 - Haverbeke, Marijn. Eloquent JavaScript: a modern introduction to programming. No Starch Press, 2014.
 http://eloquentjavascript.net/
